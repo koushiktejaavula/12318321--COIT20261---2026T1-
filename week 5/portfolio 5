@@ -1,0 +1,20 @@
+I have created the project named Vlan basics with my student Id 
+I have connected the four hosts to the openvswitch where I have connected the host eth0 to the witch eth1 leaving the eth0 of the switch.
+Then I have checked the switch ip address and I have updated the switches ports and with the VLAN ID with t=my last two digits of the student ID that 21 and 22.
+ovs-vsctl set port eth1 tag=21
+ovs-vsctl set port eth2 tag=21
+ovs-vsctl set port eth3 tag=22
+ovs-vsctl set port eth4 tag=22
+after updatng the ports I have seen it is updated or nt by using following link 
+ovs-vsctl show
+
+I have saved the project and I have saved the project with another name that Vlan basics
+I have connected the eth0 to the router in the new connection
+I have updated the trunks for the switch using the following links
+ovs-vsctl set port eth0 trunks=21,22
+
+Enable VLANs on a Single Physical Interface of Linux Router
+ip link add link eth0 name eth0.21 type vlan id 21
+ip link add link eth0 name eth0.22 type vlan id 22
+
+by the updating the router path we can ping to the another host of the othewr subnet.
