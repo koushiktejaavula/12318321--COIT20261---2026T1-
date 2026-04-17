@@ -1,0 +1,9 @@
+I have extracted the Setting Ip network which is saved in my projects;.
+I have started Netcat in server mode on one device.
+The server listens on a port you specify, e.g., port 12345. Use the following command on the host to act as a server
+nc -l -p 12345
+I have given the above command to host 1 and then on the host 2 nc 10.10.10.22 12345
+then I have sent the request to the host 1 to host 2 that I am a client then host 2 received the request and I am a client
+Then from Host 2, I have sent another request where the requests are seen in the screenshot.
+In second task I have located the pcap file in the filazilla  and download the pcap file and tested it in the wireshark.
+The wireshark shows the packets how many packets have been received and sent.
