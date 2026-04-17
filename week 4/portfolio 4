@@ -1,0 +1,20 @@
+This project focuses on understanding how Linux hosts and routers manage routing tables, how IP forwarding works, and how packets move between different subnets. The goal was to build a small two‑subnet network in GNS3, configure static IP addresses, enable forwarding on the router, and verify connectivity using routing tables and ping.
+
+The network consists of three Linux hosts, one Linux router, and one Ethernet switch. Two of the hosts are connected to the switch, while the third host connects directly to the router. This creates two separate subnets: one shared by Host1, Host2, and the router’s first interface, and another shared by Host3 and the router’s second interface.
+
+For addressing, I used two /24 networks. Host1 and Host2 were assigned IPs in the 10.1.1.0/24 subnet, with the router’s eth0 interface acting as their gateway. Host3 was placed in the 10.2.2.0/24 subnet, with the router’s eth1 interface serving as its gateway. Each host was configured with a static IP address, subnet mask, and default gateway. Forwarding was disabled on all hosts and enabled on the router.
+
+After starting all nodes, I checked the routing tables using the ip route show command. Each host correctly displayed a default route pointing to the router, and the router showed directly connected routes for both subnets. This confirmed that the static configuration was correct.
+
+
+To verify end‑to‑end connectivity, I performed a ping from Host1 to Host3. The packets successfully crossed the router, demonstrating that forwarding and routing were functioning as expected.
+
+This task explored dynamic routing using OSPF (Open Shortest Path First). The provided GNS3 template included four FRR routers, two hosts, and two NETem nodes. All routers were already configured with IP addresses and OSPF settings, so the focus was on observing how OSPF builds neighbour relationships, learns routes, and adapts to network changes.
+
+Once all routers finished booting, I used FRR commands to inspect routing information. The show ip ospf neighbor command revealed which routers were directly connected. The show ip ospf route and show ip route commands displayed the OSPF‑learned routes and the next hops for each destination network. This made it easy to understand how each router viewed the overall topology.
+
+To examine the actual forwarding path, I ran traceroute from one host to the other. Depending on the OSPF metrics, the traffic initially followed either the upper path (via FRR2) or the lower path (via FRR3).
+
+To test OSPF’s ability to adapt, I simulated a link failure by stopping one of the NETem nodes on the active path. This effectively removed a link between two routers. After a short convergence period, OSPF recalculated the routes, and a new path was installed. Running traceroute again confirmed that traffic was now flowing through the alternate route.
+
+This task demonstrated how dynamic routing protocols automatically adjust to topology changes without requiring manual reconfiguration. It also highlighted the importance of neighbour discovery, route advertisement, and metric‑based path selection.
