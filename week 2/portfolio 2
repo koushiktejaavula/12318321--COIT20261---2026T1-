@@ -1,0 +1,17 @@
+I have created the project named Setting IP and added the four Liux Host and connected to the Ethernet switch through a LAN.
+I have set the Ip address to the Host in a static way 10.1.20.1 and so on for all the host and I Have checked the Ip address in the command prompt using the Ip addr show command
+This is the command that I have used to update the Ip address in command prompt.
+auto eth0
+
+iface eth0 inet static
+
+address <ipaddress>
+
+netmask <networkmask>
+
+After updating the Ip
+To check the Ip address is updated or not I have used the following commands to check 
+ifdown eth0
+ifup eth0
+In task two I have pingged the host 1 to host  usng ping command like ping 10.10.20.2
+ping -c 5 10.10.20.2 this command helps to send certain 5 packets to the host which I have pingged.
