@@ -1,0 +1,22 @@
+I have extracted the project setting Ip from my previous projects.
+I have seen the host 1 arp table before pinging to the aother host.
+I have seen the arp table with the following table.
+ip neigh show
+It shws nothing before ping to the another host.
+I have pingged to the host 2.
+The ARP  changed to the stale if the host sent ping request to the host 1
+When Host  sent the ping request to another host then the stau will change to the reached.
+
+Next I have created the project name default gateway by saing the previous project.
+I have created the network where in total, there are 4 hosts, 2 switches and 2 routers, creating 3 subnets.
+I have given the Ip address to the all host by the static way.
+For routers the command which I have given is the following:
+auto eth0 
+iface eth0 inet static 
+ address <ipaddress> 
+ netmask <networkmask>  
+ gateway <routerip>
+for the gateway we have to give the ip address of the router.
+up sysctl net.ipv4.ip_forward=<0or1> this is the forwarding comman for the ipv4 which we have give for the router
+Then I have checked the ip address for the each and every host and router in th network
+I have pingged the host of one subnet to the host of another subnet.
